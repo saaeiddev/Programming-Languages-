@@ -1,51 +1,8 @@
-const languageData = [
-  ['Python','python/python-original.svg','#ffd85b','GENERAL • AI • DATA','پایتون زبانی خوانا و چندمنظوره است که برای هوش مصنوعی، یادگیری ماشین، علم داده، اتوماسیون، بک‌اند وب و اسکریپت‌نویسی بسیار پرکاربرد است.',['هوش مصنوعی','علم داده','Backend','Automation']],
-  ['JavaScript','javascript/javascript-original.svg','#f7df1e','WEB • FULL STACK','جاوااسکریپت زبان اصلی تعامل در وب است؛ از رابط‌های کاربری مرورگر تا سرور با Node.js، اپلیکیشن‌های موبایل و تجربه‌های سه‌بعدی WebGL استفاده می‌شود.',['Frontend','Node.js','WebGL','Mobile']],
-  ['TypeScript','typescript/typescript-original.svg','#4d9dff','WEB • LARGE APPS','تایپ‌اسکریپت نسخه‌ی type-safe جاوااسکریپت است و برای پروژه‌های بزرگ وب، تیم‌های توسعه، React/Angular و بک‌اندهای مدرن انتخاب محبوبی محسوب می‌شود.',['Frontend','Backend','Type Safety','Enterprise']],
-  ['C++','cplusplus/cplusplus-original.svg','#6295cb','SYSTEMS • GAMES','سی‌پلاس‌پلاس برای نرم‌افزارهای بسیار سریع، موتورهای بازی، گرافیک، شبیه‌سازی، رباتیک، سیستم‌های نهفته و بخش‌های performance-critical کاربرد دارد.',['Game Engine','Robotics','Graphics','Systems']],
-  ['C#','csharp/csharp-original.svg','#9b5cff','GAMES • .NET','سی‌شارپ زبان اصلی اکوسیستم .NET و یکی از مهم‌ترین زبان‌ها برای توسعه بازی با Unity، اپلیکیشن‌های سازمانی، وب‌سرویس‌ها و ابزارهای دسکتاپ است.',['Unity','Game Dev','.NET','Desktop']],
-  ['Java','java/java-original.svg','#ff704d','ENTERPRISE • ANDROID','جاوا در سامانه‌های سازمانی، بک‌اندهای مقیاس‌پذیر، سرویس‌های بانکی، ابزارهای بزرگ و بسیاری از پروژه‌های اندرویدی و سروری استفاده می‌شود.',['Enterprise','Backend','Android','Cloud']],
-  ['Swift','swift/swift-original.svg','#ff674d','APPLE • IOS','سوئیفت زبان مدرن اپل برای ساخت اپلیکیشن‌های iPhone، iPad، Mac، Apple Watch و visionOS است و با SwiftUI تجربه‌ی توسعه‌ی قدرتمندی ارائه می‌دهد.',['iOS','macOS','SwiftUI','visionOS']],
-  ['Kotlin','kotlin/kotlin-original.svg','#b06cff','ANDROID • JVM','کاتلین زبان مدرن و رسمی توسعه اندروید است؛ همچنین برای بک‌اند JVM، اپ‌های چندپلتفرمی و پروژه‌های Kotlin Multiplatform به کار می‌رود.',['Android','KMP','Backend','JVM']],
-  ['Go','go/go-original-wordmark.svg','#59d7e8','CLOUD • BACKEND','Go برای سرویس‌های ابری، APIهای سریع، ابزارهای DevOps، شبکه و سیستم‌های همزمان بسیار مناسب است و در زیرساخت‌های مدرن محبوبیت زیادی دارد.',['Cloud','DevOps','Backend','Networking']],
-  ['Rust','rust/rust-original.svg','#f09161','SYSTEMS • SAFE','راست برای ساخت نرم‌افزارهای سطح سیستم با سرعت بالا و ایمنی حافظه طراحی شده و در ابزارهای خط فرمان، WebAssembly، زیرساخت و سیستم‌های embedded کاربرد دارد.',['Systems','WebAssembly','Embedded','Performance']],
-  ['PHP','php/php-original.svg','#8e92d8','WEB • SERVER','PHP یکی از زبان‌های باسابقه و پرکاربرد بک‌اند وب است و بخش بزرگی از وب، مخصوصاً WordPress، فروشگاه‌ها و سامانه‌های محتوایی را پشتیبانی می‌کند.',['Web','WordPress','Backend','CMS']],
-  ['Dart','dart/dart-original.svg','#49c7f0','FLUTTER • CROSS PLATFORM','دارت زبان اصلی Flutter است و برای ساخت اپلیکیشن‌های موبایل، وب و دسکتاپ از یک کدبیس مشترک استفاده می‌شود.',['Flutter','Mobile','Web','Cross-platform']]
-];
-const iconUrl = p => `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${p}`;
-const grid = document.createElement('div');
-grid.id='languageHitGrid';
-grid.setAttribute('aria-label','Programming languages');
-grid.innerHTML=languageData.map((l,i)=>`<button class="language-hit-card" type="button" data-language="${i}" style="--lang:${l[2]}"><img src="${iconUrl(l[1])}" alt="${l[0]} logo"><span>${l[0]}</span></button>`).join('');
-document.body.appendChild(grid);
-
-function showExactLanguage(i){
-  const l=languageData[i];
-  document.getElementById('panelIcon').src=iconUrl(l[1]);
-  document.getElementById('panelIcon').alt=`${l[0]} logo`;
-  document.getElementById('panelTitle').textContent=l[0];
-  document.getElementById('panelCategory').textContent=l[3];
-  document.getElementById('panelDescription').textContent=l[4];
-  document.getElementById('panelTags').innerHTML=l[5].map(t=>`<span>${t}</span>`).join('');
-  document.getElementById('languageAccent').style.background=`linear-gradient(90deg,${l[2]},#fff)`;
-  document.getElementById('languagePanel').classList.add('open');
-}
-grid.addEventListener('pointerup',e=>{
-  const card=e.target.closest('.language-hit-card');
-  if(!card)return;
-  e.preventDefault();e.stopPropagation();
-  showExactLanguage(Number(card.dataset.language));
-},true);
-grid.addEventListener('click',e=>{
-  const card=e.target.closest('.language-hit-card');
-  if(!card)return;
-  e.preventDefault();e.stopPropagation();
-  showExactLanguage(Number(card.dataset.language));
-},true);
-
-const screenTitle=document.getElementById('screenTitle');
-const observer=new MutationObserver(()=>grid.classList.toggle('visible',screenTitle.classList.contains('visible')));
-observer.observe(screenTitle,{attributes:true,attributeFilter:['class']});
-grid.classList.toggle('visible',screenTitle.classList.contains('visible'));
-
-document.getElementById('homeBtn')?.addEventListener('click',()=>grid.classList.remove('visible'));
+const languageData={python:['Python','python/python-original.svg','پایتون برای هوش مصنوعی، یادگیری ماشین، علم داده، اتوماسیون، بک‌اند وب و اسکریپت‌نویسی کاربرد دارد.'],javascript:['JavaScript','javascript/javascript-original.svg','جاوااسکریپت برای فرانت‌اند وب، Node.js، اپلیکیشن‌های تعاملی و WebGL کاربرد دارد.'],typescript:['TypeScript','typescript/typescript-original.svg','تایپ‌اسکریپت برای پروژه‌های بزرگ وب، React، Angular و بک‌اندهای مدرن کاربرد دارد.'],cpp:['C++','cplusplus/cplusplus-original.svg','سی‌پلاس‌پلاس برای موتورهای بازی، گرافیک، رباتیک، سیستم‌های نهفته و نرم‌افزارهای پرسرعت کاربرد دارد.'],csharp:['C#','csharp/csharp-original.svg','سی‌شارپ برای Unity، اکوسیستم .NET، وب‌سرویس‌ها و نرم‌افزارهای دسکتاپ کاربرد دارد.'],java:['Java','java/java-original.svg','جاوا برای سامانه‌های سازمانی، بک‌اند، سرویس‌های بزرگ و پروژه‌های اندرویدی کاربرد دارد.'],swift:['Swift','swift/swift-original.svg','سوئیفت برای iOS، iPadOS، macOS، watchOS و visionOS کاربرد دارد.'],kotlin:['Kotlin','kotlin/kotlin-original.svg','کاتلین برای Android، Kotlin Multiplatform و بک‌اند JVM کاربرد دارد.'],go:['Go','go/go-original-wordmark.svg','Go برای Cloud، API، DevOps، شبکه و سرویس‌های همزمان کاربرد دارد.'],rust:['Rust','rust/rust-original.svg','Rust برای برنامه‌نویسی سیستم، WebAssembly، Embedded و نرم‌افزارهای پرسرعت و ایمن کاربرد دارد.'],php:['PHP','php/php-original.svg','PHP برای بک‌اند وب، WordPress، فروشگاه‌ها و سیستم‌های مدیریت محتوا کاربرد دارد.'],dart:['Dart','dart/dart-original.svg','Dart زبان اصلی Flutter و مناسب اپلیکیشن‌های موبایل، وب و دسکتاپ چندسکویی است.']};
+const order=['python','javascript','typescript','cpp','csharp','java','swift','kotlin','go','rust','php','dart'];
+const icon=p=>`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${p}`;
+const grid=document.createElement('div');grid.id='languageHitGrid';grid.innerHTML=order.map(k=>{const l=languageData[k];return `<button class="language-hit-card" type="button" data-key="${k}"><img src="${icon(l[1])}" alt="${l[0]}"><span>${l[0]}</span></button>`}).join('');document.body.appendChild(grid);
+function showLanguageByKey(k){const l=languageData[k];if(!l)return;document.getElementById('panelIcon').src=icon(l[1]);document.getElementById('panelTitle').textContent=l[0];document.getElementById('panelCategory').textContent='PROGRAMMING LANGUAGE';document.getElementById('panelDescription').textContent=l[2];document.getElementById('panelTags').innerHTML='';document.getElementById('languagePanel').classList.add('open')}
+grid.addEventListener('pointerup',e=>{const b=e.target.closest('.language-hit-card');if(!b)return;e.preventDefault();e.stopImmediatePropagation();showLanguageByKey(b.dataset.key)},true);
+grid.addEventListener('click',e=>{if(e.target.closest('.language-hit-card')){e.preventDefault();e.stopImmediatePropagation()}},true);
+const title=document.getElementById('screenTitle');new MutationObserver(()=>grid.classList.toggle('visible',title.classList.contains('visible'))).observe(title,{attributes:true});grid.classList.toggle('visible',title.classList.contains('visible'));document.getElementById('homeBtn')?.addEventListener('click',()=>grid.classList.remove('visible'));
