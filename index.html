@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#100b22" />
+  <meta name="description" content="Programming Languages Café — an interactive 3D journey through programming languages." />
+  <title>Programming Languages Café</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <canvas id="scene" aria-label="Interactive 3D café"></canvas>
+
+  <div id="noise" aria-hidden="true"></div>
+  <div id="vignette" aria-hidden="true"></div>
+
+  <header class="topbar glass">
+    <div class="brand" dir="ltr">
+      <span class="brand-dot"></span>
+      <span>PROGRAMMING LANGUAGES</span>
+      <small>CAFÉ</small>
+    </div>
+    <div class="top-actions">
+      <button id="homeBtn" class="icon-btn hidden" type="button" aria-label="بازگشت به نمای کافه" title="بازگشت">↩</button>
+      <button id="musicBtn" class="icon-btn" type="button" aria-label="قطع یا پخش موسیقی" title="موسیقی">♪</button>
+    </div>
+  </header>
+
+  <section id="hero" class="hero-panel">
+    <div class="eyebrow">INTERACTIVE 3D EXPERIENCE</div>
+    <h1>کافه‌ی زبان‌های<br><span>برنامه‌نویسی</span></h1>
+    <p>در کافه قدم بزن، روی صفحه‌ی لپ‌تاپ کلیک کن و کاربرد زبان‌های مختلف را به‌صورت تعاملی کشف کن.</p>
+    <button id="focusLaptop" class="primary-btn" type="button">
+      <span>ورود به لپ‌تاپ</span>
+      <b>⌁</b>
+    </button>
+  </section>
+
+  <div id="hint" class="hint glass">
+    <span class="mouse">⌁</span>
+    <div><b>صفحه‌ی لپ‌تاپ را لمس کن</b><small>Drag • Orbit &nbsp;&nbsp; Scroll • Zoom</small></div>
+  </div>
+
+  <aside id="languagePanel" class="language-panel glass" aria-live="polite">
+    <button id="closePanel" class="close-btn" type="button" aria-label="بستن">×</button>
+    <div id="languageAccent" class="language-accent"></div>
+    <div class="lang-heading">
+      <img id="panelIcon" alt="" />
+      <div>
+        <span id="panelCategory">PROGRAMMING LANGUAGE</span>
+        <h2 id="panelTitle">Python</h2>
+      </div>
+    </div>
+    <p id="panelDescription"></p>
+    <div id="panelTags" class="tag-list"></div>
+    <div class="panel-footer"><span>برای انتخاب زبان دیگر، روی کارت بعدی کلیک کن.</span></div>
+  </aside>
+
+  <div id="screenTitle" class="screen-title">
+    <span>LANGUAGE LIBRARY</span>
+    <strong>یک زبان را انتخاب کن</strong>
+  </div>
+
+  <div id="loading" class="loading-screen">
+    <div class="loader-orbit"><i></i><i></i><i></i></div>
+    <strong>در حال آماده‌سازی کافه…</strong>
+    <span id="loadStatus">ساخت صحنه‌ی سه‌بعدی</span>
+  </div>
+
+  <div id="entry" class="entry-screen">
+    <div class="entry-card glass">
+      <div class="entry-logo">&lt;/&gt;</div>
+      <p class="entry-kicker">A LITTLE DIGITAL CAFÉ</p>
+      <h2>Programming Languages Café</h2>
+      <p>برای ورود، تجربه‌ی سه‌بعدی و موسیقی لایت کافه را فعال کن.</p>
+      <button id="enterBtn" class="primary-btn" type="button"><span>ورود به کافه</span><b>→</b></button>
+      <small>صدا را هر زمان خواستی از گوشه‌ی صفحه خاموش کن.</small>
+    </div>
+  </div>
+
+  <div id="fallback" class="fallback hidden">
+    مرورگر شما WebGL را پشتیبانی نمی‌کند. لطفاً با نسخه‌ی جدید Safari، Chrome یا Edge باز کنید.
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
